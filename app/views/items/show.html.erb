@@ -1,8 +1,12 @@
 <h2><%= @item.title %></h2>
 <p><%= @item.description %></p>
-<%= link_to "Edit", edit_item_path%>
+<% if policy(@item).edit? %>
+    <%= link_to "Edit", edit_item_path%>
+<% end %>
 <br>
-<%= link_to "Delete #{@item.title}",
+<% if policy(@item).destroy? %>
+    <%= link_to "Delete #{@item.title}",
             item_path(@item),
             method: :delete,
             data: { confirm: "Are you sure?" } %>
+<% end %>
