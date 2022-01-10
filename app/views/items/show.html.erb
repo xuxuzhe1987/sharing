@@ -3,10 +3,9 @@
 <% if policy(@item).edit? %>
     <%= link_to "Edit", edit_item_path%>
 <% end %>
-<br>
 <% if policy(@item).destroy? %>
-    <%= link_to "Delete #{@item.title}",
-            item_path(@item),
-            method: :delete,
-            data: { confirm: "Are you sure?" } %>
+    <%= link_to "Delete", item_path(@item), method: :delete, data: { confirm: "Are you sure?" } %>
+<% end %>
+<% if current_user != @item.user %>
+    <%= link_to "Apply", "#" %>
 <% end %>
