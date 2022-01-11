@@ -29,4 +29,7 @@ class ItemPolicy < ApplicationPolicy
     record.user == user
   end
 
+  def my_items?
+    true
+  end
 end

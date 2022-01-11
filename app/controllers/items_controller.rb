@@ -46,6 +46,11 @@ class ItemsController < ApplicationController
         redirect_to items_path
     end
 
+    def my_items
+        @my_items = Item.where(user: current_user)
+        authorize @my_items
+    end
+
     private
 
     def item_params

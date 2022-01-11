@@ -1,0 +1,11 @@
+<h1>My Items</h1>
+<%= link_to "New", new_item_path%>
+<ul>
+  <% @my_items.each do |item| %>
+    <div>
+      <li><%= link_to item.title, item_path(item) %></li>
+      <li><%= item.user.email %></li>
+      <br>
+    </div> 
+  <% end %>
+</ul>
