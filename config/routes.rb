@@ -8,4 +8,11 @@ Rails.application.routes.draw do
       get :my_items
     end
   end
+
+  resources :bookings, only: [:show, :new, :create] do
+    collection do
+      get :my_bookings
+    end
+  end
+
 end
