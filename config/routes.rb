@@ -7,9 +7,10 @@ Rails.application.routes.draw do
     collection do
       get :my_items
     end
+    resources :bookings, only: [:new, :create]
   end
 
-  resources :bookings, only: [:show, :new, :create] do
+  resources :bookings, only: [:show] do
     collection do
       get :my_bookings
     end

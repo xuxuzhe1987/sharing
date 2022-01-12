@@ -1,5 +1,12 @@
 <h2><%= @item.title %></h2>
-<p><%= @item.description %></p>
+
+<% booking = @item.bookings.select { |booking| booking.user_id == current_user.id } %>
+<% if booking.count != 0 || @item.user == current_user %>
+    <p><%= @item.description %></p>
+<% else %>
+    <p>***** hidden filed *****</p>
+<% end %>
+
 <% if policy(@item).edit? %>
     <%= link_to "Edit", edit_item_path%>
 <% end %>
@@ -7,5 +14,9 @@
     <%= link_to "Delete", item_path(@item), method: :delete, data: { confirm: "Are you sure?" } %>
 <% end %>
 <% if current_user != @item.user %>
-    <%= link_to "Apply", "#" %>
+    <% if booking.count.zero? %>
+        <%= link_to "Apply", new_item_booking_path(@item) %>
+    <% else %>
+        <%= "Already Applied" %>
+    <% end %>
 <% end %>
