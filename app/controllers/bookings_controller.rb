@@ -19,11 +19,12 @@ class BookingsController < ApplicationController
         @booking.item_id = @item.id
         @booking.user_id = current_user.id
         @booking.save
-        redirect_to booking_path(@booking) 
+        redirect_to item_path(@item) 
     end
 
     def my_bookings
-        authorize @booking
+        @my_bookings =Booking.where(user: current_user)
+        authorize @my_bookings
     end
 
     private

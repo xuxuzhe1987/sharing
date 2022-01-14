@@ -1,0 +1,10 @@
+<h1>My Bookings</h1>
+<ul>
+  <% @my_bookings.each do |booking| %>
+    <div>
+      <li><%= link_to booking.item.title, item_path(booking.item) %></li>
+      <li><%= booking.status %></li>
+      <br>
+    </div> 
+  <% end %>
+</ul>
