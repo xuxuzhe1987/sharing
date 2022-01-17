@@ -1,7 +1,7 @@
 <h2><%= @item.title %></h2>
 
 <% current_booking = @item.bookings.select { |booking| booking.user_id == current_user.id } %>
-<% if current_booking.count != 0 || @item.user == current_user %>
+<% if current_booking.count != 0 && current_booking[0].status == true || @item.user == current_user %>
     <p><%= @item.description %></p>
 <% else %>
     <p>***** hidden filed *****</p>
@@ -17,8 +17,8 @@
 
 <% if current_user != @item.user %>
     <% if current_booking.count.zero? %>
-        <%= link_to "Apply", new_item_booking_path(@item) %>
-    <% else %>
-        <%= "Already Applied" %>
+        <%= link_to "Request", new_item_booking_path(@item) %>
+    <% elsif current_booking[0].status == false %>
+        <%= "Waiting for approval" %>
     <% end %>
 <% end %>

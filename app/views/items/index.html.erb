@@ -3,8 +3,8 @@
 <ul>
   <% @items.each do |item| %>
     <div>
-      <li>分享物: <%= link_to item.title, item_path(item) %></li>
-      <li>所有者: <%= item.user.email %></li>
+      <li><%= link_to item.title, item_path(item) %></li>
+      <li>Owner: <%= item.user.email %></li>
       <br>
     </div> 
   <% end %>

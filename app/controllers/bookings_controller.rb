@@ -22,8 +22,21 @@ class BookingsController < ApplicationController
         redirect_to item_path(@item) 
     end
 
+    def edit
+        @booking = Booking.find(params[:id])
+        authorize @booking
+    end
+
+    def update
+        @booking = Booking.find(params[:id])
+        authorize @booking
+        @booking.update(booking_params)
+        # no need for app/views/bookings/update.html.erb
+        redirect_to booking_path(@booking)
+    end
+
     def my_bookings
-        @my_bookings =Booking.where(user: current_user)
+        @my_bookings = Booking.where(user: current_user)
         authorize @my_bookings
     end
 
