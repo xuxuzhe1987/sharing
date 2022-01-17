@@ -32,7 +32,7 @@ class BookingsController < ApplicationController
         authorize @booking
         @booking.update(booking_params)
         # no need for app/views/bookings/update.html.erb
-        redirect_to booking_path(@booking)
+        redirect_to my_items_items_path
     end
 
     def my_bookings

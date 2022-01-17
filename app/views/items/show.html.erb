@@ -17,7 +17,7 @@
 
 <% if current_user != @item.user %>
     <% if current_booking.count.zero? %>
-        <%= link_to "Request", new_item_booking_path(@item) %>
+        <%= link_to "Request", item_bookings_path(@item, booking: {status: false}) , method: :post %>
     <% elsif current_booking[0].status == false %>
         <%= "Waiting for approval" %>
     <% end %>
