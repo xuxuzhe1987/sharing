@@ -2,10 +2,14 @@
 <%= link_to "New", new_item_path%>
 <div class="cards">
   <% @items.each do |item| %>
-    <div class="card_item">
-      <h2>分享物: <%= link_to item.title, item_path(item) %></h2>
-      <p>所有者: <%= item.user.email %></p>
-    </div> 
+    <%= link_to item_path(item) do %>
+      <div class="card_item">
+        <div>
+          <p>分享物: <%= item.title %></p>
+          <p>所有者: <%= item.user.email %></p>
+        </div>    
+      </div> 
+    <% end %>
   <% end %>
 </div>
   
