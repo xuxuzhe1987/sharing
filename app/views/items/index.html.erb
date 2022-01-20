@@ -1,11 +1,11 @@
 <h1>All Items</h1>
 <%= link_to "New", new_item_path%>
-<ul>
+<div class="cards">
   <% @items.each do |item| %>
-    <div>
-      <li>分享物: <%= link_to item.title, item_path(item) %></li>
-      <li>所有者: <%= item.user.email %></li>
-      <br>
+    <div class="card_item">
+      <h2>分享物: <%= link_to item.title, item_path(item) %></h2>
+      <p>所有者: <%= item.user.email %></p>
     </div> 
   <% end %>
-</ul>
+</div>
+  
