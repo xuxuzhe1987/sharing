@@ -4,8 +4,17 @@
   <% @my_items.each do |item| %>
     <div>
       <li><%= link_to item.title, item_path(item) %></li>
-      <li><%= item.user.email %></li>
-      <br>
-    </div> 
+      <p>Requests:</p>
+      <div>
+        <% item.bookings.each do |booking| %>
+          <p>From: <%= booking.user.email %></p>
+          <p>Status: <%= booking.status %></p>
+          <%= link_to "Approve", booking_path(booking, booking: {status: true}) , method: :put, data: { confirm: "You sure?"} %>
+          <%= link_to "Decline", booking_path(booking, booking: {status: false}) , method: :put, data: { confirm: "You sure?"} %>
+          <p>-------------------------------</p>
+        <% end %>
+      </div>   
+    </div>
+    <br>
   <% end %>
 </ul>

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :bookings, only: [:new, :create]
   end
 
-  resources :bookings, only: [:show] do
+  resources :bookings, only: [:show, :edit, :update] do
     collection do
       get :my_bookings
     end
