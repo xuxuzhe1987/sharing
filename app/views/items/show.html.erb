@@ -1,24 +1,29 @@
-<h2><%= @item.title %></h2>
+<div class="container">
 
-<% current_booking = @item.bookings.select { |booking| booking.user_id == current_user.id } %>
-<% if current_booking.count != 0 && current_booking[0].status == true || @item.user == current_user %>
-    <p><%= @item.description %></p>
-<% else %>
-    <p>***** hidden filed *****</p>
-<% end %>
-<p>Owner: <%= @item.user.email %></p>
+    <h2><%= @item.title %></h2>
 
-<% if policy(@item).edit? %>
-    <%= link_to "Edit", edit_item_path%>
-<% end %>
-<% if policy(@item).destroy? %>
-    <%= link_to "Delete", item_path(@item), method: :delete, data: { confirm: "Are you sure?" } %>
-<% end %>
-
-<% if current_user != @item.user %>
-    <% if current_booking.count.zero? %>
-        <%= link_to "Request", item_bookings_path(@item, booking: {status: false}) , method: :post %>
-    <% elsif current_booking[0].status == false %>
-        <%= "Waiting for approval" %>
+    <% current_booking = @item.bookings.select { |booking| booking.user_id == current_user.id } %>
+    <% if current_booking.count != 0 && current_booking[0].status == true || @item.user == current_user %>
+        <p><%= @item.description %></p>
+    <% else %>
+        <p>***** hidden filed *****</p>
     <% end %>
-<% end %>
+    <p>Owner: <%= @item.user.email %></p>
+
+    <% if policy(@item).edit? %>
+        <%= link_to "Edit", edit_item_path%>
+    <% end %>
+    <% if policy(@item).destroy? %>
+        <%= link_to "Delete", item_path(@item), method: :delete, data: { confirm: "Are you sure?" } %>
+    <% end %>
+
+    <% if current_user != @item.user %>
+        <% if current_booking.count.zero? %>
+            <%= link_to "Request", item_bookings_path(@item, booking: {status: false}) , method: :post %>
+        <% elsif current_booking[0].status == false %>
+            <%= "Waiting for approval" %>
+        <% end %>
+    <% end %>
+
+</div>
+

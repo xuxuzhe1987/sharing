@@ -1,6 +1,7 @@
 <div class="container">
-  <h1>All Items</h1>
-  <%= link_to "New Item", new_item_path, class: "btn btn-primary" %>
+  <div>
+    <%= link_to "New Share", new_item_path, class: "btn btn-primary" %>
+  </div>
   <div class="cards">
     <% @items.each do |item| %>
       <%= link_to item_path(item), class: "link_remove_underline" do %>
